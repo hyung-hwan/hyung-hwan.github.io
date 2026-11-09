@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ description or site.description }}">
+    <meta name="theme-color" content="#111310">
+    <meta property="og:title" content="{{ title }} · {{ site.name }}">
+    <meta property="og:description" content="{{ description or site.description }}">
+    <meta property="og:type" content="website">
+    <title>{{ title }} · {{ site.name }}</title>
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/{{ stylesheet or 'plain.css' }}">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    {{ content | safe }}
+  </body>
+</html>

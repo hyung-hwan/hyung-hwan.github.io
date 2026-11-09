@@ -1,0 +1,107 @@
+:root {
+  --background: #111310;
+  --text: #e8eae4;
+  --muted: #a4a89f;
+  --line: #30342e;
+  --accent: #82a8ff;
+  --measure: 38rem;
+  --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  color-scheme: dark;
+}
+::selection { background: var(--accent); color: #10140f; }
+p { text-wrap: pretty; }
+
+.skip-link {
+  position: fixed;
+  top: -5rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.65rem 0.9rem;
+  background: var(--text);
+  color: var(--background);
+}
+.skip-link:focus { top: 1rem; }
+
+/* one column: rail on top, content below */
+.page {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 4rem 1.5rem 5rem;
+}
+
+.rail h1 { margin: 0; font-size: 1.5rem; }
+.tagline { margin: 0.25rem 0 0; color: var(--muted); }
+
+.links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 1rem; font-size: 0.9rem; }
+.links a { color: var(--muted); text-decoration: none; }
+.links a:hover { color: var(--accent); }
+
+.lead { margin-top: 2.5rem; }
+.lead p { margin: 0; }
+
+section { margin-top: 3rem; }
+section h2 {
+  margin: 0 0 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+section p { margin: 0 0 1rem; }
+section p:last-child { margin-bottom: 0; }
+section a { color: var(--text); text-underline-offset: 0.2em; }
+section a:hover { color: var(--accent); }
+
+.section-note { margin: -0.75rem 0 1.5rem; font-size: 0.85rem; color: var(--muted); }
+
+.entries { margin: 0; padding: 0; list-style: none; }
+.entries li { margin: 0 0 1.5rem; break-inside: avoid; }
+.entries > li > a {
+  font-family: var(--mono);
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+}
+.entries > li > a:hover { color: var(--accent); border-bottom-color: currentColor; }
+.entries .meta { margin-left: 0.6rem; font-size: 0.8rem; color: var(--muted); }
+.entries p { margin: 0.35rem 0 0; color: var(--muted); }
+
+/* two columns: a standing rail beside the content */
+@media (min-width: 62rem) {
+  .page {
+    display: grid;
+    grid-template-columns: 14rem minmax(0, var(--measure));
+    column-gap: 4.5rem;
+    justify-content: center;
+    max-width: none;
+    padding-top: 5rem;
+  }
+  .rail { position: sticky; top: 5rem; align-self: start; }
+  .links { flex-direction: column; gap: 0.4rem; margin-top: 1.5rem; }
+  .lead { margin-top: 0; }
+}
+
+/* wider still: the lists and the prose both split in two */
+@media (min-width: 88rem) {
+  .page { grid-template-columns: 14rem minmax(0, 54rem); }
+  .entries { columns: 2; column-gap: 3rem; }
+  .entries li { margin-bottom: 1.75rem; }
+  /* the prose splits too, so it fills the same width without the line
+   * length running away with it */
+  .about-copy { columns: 2; column-gap: 3rem; }
+}

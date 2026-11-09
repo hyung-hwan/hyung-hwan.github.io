@@ -1,0 +1,54 @@
+---
+layout: base.njk
+stylesheet: plain.css
+---
+
+<main id="main" class="page">
+  <div class="rail">
+    <h1>{{ site.fullName or site.name }}</h1>
+    <p class="tagline">{{ site.title }}</p>
+    <nav class="links" aria-label="Elsewhere">
+      <a href="{{ site.github }}">github.com/hyung-hwan</a>
+    </nav>
+  </div>
+
+  <div class="content">
+    <div class="lead">
+      {{ content | safe }}
+    </div>
+
+    <section>
+      <h2>Projects</h2>
+      <ul class="entries">
+        {% for project in collections.activeProjects %}
+        <li>
+          <a href="{{ project.data.repository }}">{{ project.data.name }}</a>
+          <span class="meta">{{ project.data.kicker }}</span>
+          {{ project.content | safe }}
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section>
+      <h2>Earlier work</h2>
+      <p class="section-note">No longer maintained, but kept public.</p>
+      <ul class="entries">
+        {% for project in collections.pastProjects %}
+        <li>
+          <a href="{{ project.data.repository }}">{{ project.data.name }}</a>
+          <span class="meta">{{ project.data.kicker }}</span>
+          {{ project.content | safe }}
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section>
+      <h2>About</h2>
+      <div class="about-copy">
+        {{ collections.about[0].content | safe }}
+      </div>
+    </section>
+  </div>
+</main>
